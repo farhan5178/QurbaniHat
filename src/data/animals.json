@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Deshi Shahi Cow",
+    "type": "Cow",
+    "breed": "Local Deshi",
+    "price": 120000,
+    "weight": 280,
+    "age": 3,
+    "location": "Bogura",
+    "description": "Healthy deshi cow suitable for Qurbani. Well fed with natural food.",
+    "image": "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?auto=format&fit=crop&q=80&w=800",
+    "category": "Large Animal"
+  },
+  {
+    "id": 2,
+    "name": "Sahiwal Bull",
+    "type": "Cow",
+    "breed": "Sahiwal",
+    "price": 250000,
+    "weight": 450,
+    "age": 4,
+    "location": "Dhaka",
+    "description": "Premium quality Sahiwal breed bull, excellent health condition.",
+    "image": "https://images.unsplash.com/photo-1590059918074-ce463b2f9011?auto=format&fit=crop&q=80&w=800",
+    "category": "Large Animal"
+  },
+  {
+    "id": 3,
+    "name": "Black Bengal Goat",
+    "type": "Goat",
+    "breed": "Black Bengal",
+    "price": 18000,
+    "weight": 35,
+    "age": 2,
+    "location": "Rajshahi",
+    "description": "Pure Black Bengal goat. Very active and suitable for small families.",
+    "image": "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&q=80&w=800",
+    "category": "Small Animal"
+  },
+  {
+    "id": 4,
+    "name": "Jamnapari Goat",
+    "type": "Goat",
+    "breed": "Jamnapari",
+    "price": 35000,
+    "weight": 65,
+    "age": 2,
+    "location": "Chattogram",
+    "description": "Large sized Jamnapari goat with beautiful markings and good health.",
+    "image": "https://images.unsplash.com/photo-1533319417894-6fbb331e5513?auto=format&fit=crop&q=80&w=800",
+    "category": "Small Animal"
+  },
+  {
+    "id": 5,
+    "name": "Sindhi Cow",
+    "type": "Cow",
+    "breed": "Red Sindhi",
+    "price": 180000,
+    "weight": 350,
+    "age": 3,
+    "location": "Sylhet",
+    "description": "Beautiful Red Sindhi cow, fully vaccinated and ready for Qurbani.",
+    "image": "https://images.unsplash.com/photo-1616035079803-3453b0dfab2f?auto=format&fit=crop&q=80&w=800",
+    "category": "Large Animal"
+  },
+  {
+    "id": 6,
+    "name": "Brahma Cross Bull",
+    "type": "Cow",
+    "breed": "Brahma Cross",
+    "price": 320000,
+    "weight": 550,
+    "age": 4,
+    "location": "Kushtia",
+    "description": "Massive Brahma cross breed. Perfect choice for large gatherings.",
+    "image": "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&q=80&w=800",
+    "category": "Large Animal"
+  }
+]

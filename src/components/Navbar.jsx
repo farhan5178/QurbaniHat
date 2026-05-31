@@ -9,7 +9,7 @@ export default function Navbar() {
   const isLoggedIn = false;
 
   return (
-    <HeroNavbar onMenuOpenChange={setIsMenuOpen}>
+    <HeroNavbar onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" }}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
