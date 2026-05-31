@@ -1,31 +1,19 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { Card, CardBody, Avatar, Button, Spacer } from "@heroui/react";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { Card, Avatar, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function MyProfile() {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push("/login");
-    }
-  }, [user, loading, router]);
-
-  if (loading || !user) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
+    <ProtectedRoute>
+      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4 animate__animated animate__fadeIn">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,7 +21,7 @@ export default function MyProfile() {
         className="w-full max-w-md"
       >
         <Card className="shadow-xl rounded-2xl overflow-hidden bg-white/70 dark:bg-gray-800/70 backdrop-blur-md border border-white/20 dark:border-gray-700/50">
-          <CardBody className="p-8 flex flex-col items-center text-center">
+          <div className="p-8 flex flex-col items-center text-center">
             <div className="relative mb-6 group">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors duration-300"></div>
               <Avatar
@@ -61,9 +49,10 @@ export default function MyProfile() {
             >
               Update Information
             </Button>
-          </CardBody>
+          </div>
         </Card>
       </motion.div>
     </div>
+    </ProtectedRoute>
   );
 }

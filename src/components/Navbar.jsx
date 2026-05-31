@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { Navbar as HeroNavbar, NavbarBrand, NavbarContent, NavbarItem, Link as HeroLink, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Avatar } from "@heroui/react";
 import NextLink from "next/link";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLoggedIn = false;
+  const { user, logout } = useAuth();
+  const isLoggedIn = !!user;
 
   return (
     <HeroNavbar onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" }}>
@@ -38,8 +40,11 @@ export default function Navbar() {
       <NavbarContent justify="end">
         {isLoggedIn ? (
           <NavbarItem className="flex gap-4 items-center">
-            <Avatar name="U" />
-            <Button color="danger" variant="flat">
+            <HeroLink as={NextLink} href="/my-profile" className="text-sm font-semibold text-gray-700 hover:text-success">
+              My Profile
+            </HeroLink>
+            <Avatar src={user?.photoUrl || user?.image} name={user?.name?.charAt(0) || "U"} />
+            <Button color="danger" variant="flat" onClick={logout}>
               Logout
             </Button>
           </NavbarItem>
@@ -68,12 +73,25 @@ export default function Navbar() {
             All Animals
           </HeroLink>
         </NavbarMenuItem>
-        {!isLoggedIn && (
+        {!isLoggedIn ? (
           <NavbarMenuItem>
             <HeroLink as={NextLink} color="foreground" className="w-full" href="/login" size="lg">
               Login
             </HeroLink>
           </NavbarMenuItem>
+        ) : (
+          <>
+            <NavbarMenuItem>
+              <HeroLink as={NextLink} color="foreground" className="w-full" href="/my-profile" size="lg">
+                My Profile
+              </HeroLink>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <HeroLink color="danger" className="w-full cursor-pointer" onClick={logout} size="lg">
+                Logout
+              </HeroLink>
+            </NavbarMenuItem>
+          </>
         )}
       </NavbarMenu>
     </HeroNavbar>
