@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, CardBody, CardFooter, Image as HeroImage } from "@heroui/react";
+import { Button, Card, Image as HeroImage } from "@heroui/react";
 import NextLink from "next/link";
 import animals from "../data/animals.json";
 
@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-16 pb-12 w-full">
-      <section className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mt-6">
+      <section className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mt-6 animate__animated animate__fadeInDown">
         <HeroImage
           removeWrapper
           alt="Hero Banner"
@@ -29,7 +29,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section className="animate__animated animate__fadeInUp animate__delay-1s">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900">Featured Animals</h2>
           <Button as={NextLink} href="/animals" variant="light" color="success" className="font-semibold">
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredAnimals.map((animal) => (
             <Card shadow="sm" key={animal.id} isPressable>
-              <CardBody className="overflow-visible p-0">
+              <div className="overflow-visible p-0">
                 <HeroImage
                   shadow="sm"
                   radius="lg"
@@ -48,8 +48,8 @@ export default function Home() {
                   className="w-full object-cover h-[200px]"
                   src={animal.image}
                 />
-              </CardBody>
-              <CardFooter className="text-small justify-between flex-col items-start p-4 gap-2">
+              </div>
+              <div className="text-small justify-between flex-col items-start p-4 gap-2">
                 <div className="flex justify-between w-full">
                   <b className="text-lg">{animal.name}</b>
                   <p className="text-success font-semibold text-lg font-mono">৳{animal.price.toLocaleString()}</p>
@@ -59,7 +59,7 @@ export default function Home() {
                   <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{animal.weight}kg</span>
                   <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{animal.location}</span>
                 </div>
-              </CardFooter>
+              </div>
             </Card>
           ))}
         </div>

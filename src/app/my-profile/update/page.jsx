@@ -1,7 +1,8 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { Card, CardBody, Input, Button } from "@heroui/react";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { Card, Input, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -9,7 +10,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 
 export default function UpdateProfile() {
-  const { user, loading, updateUser } = useAuth();
+  const { user, updateUser } = useAuth();
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -17,20 +18,19 @@ export default function UpdateProfile() {
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/login");
-    } else if (user) {
-      setName(user.name || "");
-      setImage(user.photoUrl || user.image || "");
+    if (user) {
+      Promise.resolve().then(() => {
+        setName(user.name || "");
+        setImage(user.photoUrl || user.image || "");
+      });
     }
-  }, [user, loading, router]);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsUpdating(true);
 
     try {
-      // Mimicking better-auth client pattern
       await updateUser({ name, image });
       toast.success("Profile updated successfully!");
       router.push("/my-profile");
@@ -42,16 +42,9 @@ export default function UpdateProfile() {
     }
   };
 
-  if (loading || !user) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
+    <ProtectedRoute>
+      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4 animate__animated animate__fadeIn">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -59,7 +52,7 @@ export default function UpdateProfile() {
         className="w-full max-w-md"
       >
         <Card className="shadow-xl rounded-2xl overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/50">
-          <CardBody className="p-8">
+          <div className="p-8">
             <div className="mb-8 text-center">
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 font-inter">
                 Update Information
@@ -115,9 +108,10 @@ export default function UpdateProfile() {
                 </Button>
               </div>
             </form>
-          </CardBody>
+          </div>
         </Card>
       </motion.div>
     </div>
+    </ProtectedRoute>
   );
 }

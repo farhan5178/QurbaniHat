@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { Button, Card, CardBody, Image as HeroImage } from "@heroui/react";
+import { Button, Card, Image as HeroImage } from "@heroui/react";
 import NextLink from "next/link";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import animalsData from "../../../data/animals.json";
 
 export default function AnimalDetailsPage() {
@@ -11,7 +12,6 @@ export default function AnimalDetailsPage() {
   const animalId = parseInt(params.id);
   const animal = animalsData.find((a) => a.id === animalId);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,7 +39,8 @@ export default function AnimalDetailsPage() {
   };
 
   return (
-    <div className="flex flex-col w-full mt-6 pb-12 relative">
+    <ProtectedRoute>
+    <div className="flex flex-col w-full mt-6 pb-12 relative animate__animated animate__fadeIn">
       
       {showToast && (
         <div className="fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 animate-appearance-in">
@@ -89,17 +90,9 @@ export default function AnimalDetailsPage() {
 
         <div>
           <Card className="p-6 border border-gray-100 shadow-sm" radius="lg">
-            <CardBody>
+            <div className="p-4">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Book this Animal</h2>
               
-              {!isLoggedIn ? (
-                <div className="bg-orange-50 border border-orange-200 p-6 rounded-xl text-center">
-                  <p className="text-orange-800 mb-4 font-medium">You must be logged in to place a booking.</p>
-                  <Button color="warning" onClick={() => setIsLoggedIn(true)} className="font-semibold text-white">
-                    Simulate Login
-                  </Button>
-                </div>
-              ) : (
                 <form onSubmit={handleBooking} className="flex flex-col gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -149,12 +142,12 @@ export default function AnimalDetailsPage() {
                     Confirm Booking
                   </Button>
                 </form>
-              )}
-            </CardBody>
+            </div>
           </Card>
         </div>
         
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
