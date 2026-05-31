@@ -15,7 +15,18 @@ export default function Navbar() {
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="sm:hidden text-gray-700"
+          icon={(isOpen) => (
+            isOpen ? (
+              <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )
+          )}
         />
         <NavbarBrand>
           <NextLink href="/" className="font-bold text-inherit text-2xl text-success">
@@ -37,7 +48,7 @@ export default function Navbar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="hidden sm:flex">
         {isLoggedIn ? (
           <NavbarItem className="flex gap-4 items-center">
             <HeroLink as={NextLink} href="/my-profile" className="text-sm font-semibold text-gray-700 hover:text-success">
@@ -50,8 +61,10 @@ export default function Navbar() {
           </NavbarItem>
         ) : (
           <>
-            <NavbarItem className="hidden lg:flex">
-              <HeroLink as={NextLink} href="/login">Login</HeroLink>
+            <NavbarItem>
+              <Button as={NextLink} color="success" href="/login" variant="light">
+                Login
+              </Button>
             </NavbarItem>
             <NavbarItem>
               <Button as={NextLink} color="success" href="/register" variant="flat">
@@ -74,11 +87,18 @@ export default function Navbar() {
           </HeroLink>
         </NavbarMenuItem>
         {!isLoggedIn ? (
-          <NavbarMenuItem>
-            <HeroLink as={NextLink} color="foreground" className="w-full" href="/login" size="lg">
-              Login
-            </HeroLink>
-          </NavbarMenuItem>
+          <>
+            <NavbarMenuItem>
+              <HeroLink as={NextLink} color="foreground" className="w-full" href="/login" size="lg">
+                Login
+              </HeroLink>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <HeroLink as={NextLink} color="success" className="w-full font-semibold" href="/register" size="lg">
+                Register
+              </HeroLink>
+            </NavbarMenuItem>
+          </>
         ) : (
           <>
             <NavbarMenuItem>

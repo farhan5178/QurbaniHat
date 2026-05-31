@@ -50,26 +50,28 @@ export default function AnimalsPage() {
                 src={animal.image}
               />
             </div>
-            <div className="flex-col items-start p-5 gap-4">
-              <div className="flex justify-between w-full items-start">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900">{animal.name}</h3>
-                  <p className="text-sm text-gray-500 mt-1">{animal.breed}</p>
+            <div className="flex flex-col items-start p-5 gap-4 w-full h-full justify-between">
+              <div className="w-full">
+                <div className="flex justify-between w-full items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{animal.name}</h3>
+                    <p className="text-sm text-gray-500 mt-1">{animal.breed}</p>
+                  </div>
+                  <p className="text-success font-bold text-xl font-mono">৳{animal.price.toLocaleString()}</p>
                 </div>
-                <p className="text-success font-bold text-xl font-mono">৳{animal.price.toLocaleString()}</p>
-              </div>
-              
-              <div className="flex gap-2 flex-wrap w-full border-t border-gray-100 pt-3">
-                <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.weight}kg</span>
-                <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.age} Years</span>
-                <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.location}</span>
+                
+                <div className="flex gap-2 flex-wrap w-full border-t border-gray-100 mt-4 pt-4">
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.weight}kg</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.age} Years</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">{animal.location}</span>
+                </div>
               </div>
 
               <Button 
                 as={NextLink} 
                 href={`/animals/${animal.id}`} 
                 color="success" 
-                className="w-full font-semibold mt-2"
+                className="w-full font-semibold mt-auto"
                 radius="md"
               >
                 View Details

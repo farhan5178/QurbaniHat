@@ -11,9 +11,14 @@ export function AuthProvider({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("mock_user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    try {
+      const storedUser = localStorage.getItem("mock_user");
+      if (storedUser && storedUser !== "undefined") {
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (e) {
+      console.error("Failed to parse mock_user from localStorage", e);
+      localStorage.removeItem("mock_user");
     }
     setLoading(false);
   }, []);
@@ -25,15 +30,20 @@ export function AuthProvider({ children }) {
           return reject(new Error("Invalid email or password"));
         }
 
-        const registeredUsersStr = localStorage.getItem("registered_users");
-        const registeredUsers = registeredUsersStr ? JSON.parse(registeredUsersStr) : [];
+        let registeredUsers = [];
+        try {
+          const registeredUsersStr = localStorage.getItem("registered_users");
+          registeredUsers = registeredUsersStr ? JSON.parse(registeredUsersStr) : [];
+        } catch (e) {}
+        
         const existingUser = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
 
         if (!existingUser) {
           return reject(new Error("User not found"));
         }
 
-        if (existingUser.password !== password) {
+        // Allow login if password matches, OR if the existing user was created before we added password support
+        if (existingUser.password && existingUser.password !== password) {
           return reject(new Error("Incorrect password"));
         }
 
