@@ -11,7 +11,7 @@ export default function Navbar() {
   const isLoggedIn = !!user;
 
   return (
-    <HeroNavbar onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" }}>
+    <HeroNavbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" }}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -77,24 +77,24 @@ export default function Navbar() {
 
       <NavbarMenu>
         <NavbarMenuItem>
-          <HeroLink as={NextLink} color="foreground" className="w-full" href="/" size="lg">
+          <HeroLink as={NextLink} color="foreground" className="w-full" href="/" size="lg" onClick={() => setIsMenuOpen(false)}>
             Home
           </HeroLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <HeroLink as={NextLink} color="foreground" className="w-full" href="/animals" size="lg">
+          <HeroLink as={NextLink} color="foreground" className="w-full" href="/animals" size="lg" onClick={() => setIsMenuOpen(false)}>
             All Animals
           </HeroLink>
         </NavbarMenuItem>
         {!isLoggedIn ? (
           <>
             <NavbarMenuItem>
-              <HeroLink as={NextLink} color="foreground" className="w-full" href="/login" size="lg">
+              <HeroLink as={NextLink} color="foreground" className="w-full" href="/login" size="lg" onClick={() => setIsMenuOpen(false)}>
                 Login
               </HeroLink>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <HeroLink as={NextLink} color="success" className="w-full font-semibold" href="/register" size="lg">
+              <HeroLink as={NextLink} color="success" className="w-full font-semibold" href="/register" size="lg" onClick={() => setIsMenuOpen(false)}>
                 Register
               </HeroLink>
             </NavbarMenuItem>
@@ -102,12 +102,12 @@ export default function Navbar() {
         ) : (
           <>
             <NavbarMenuItem>
-              <HeroLink as={NextLink} color="foreground" className="w-full" href="/my-profile" size="lg">
+              <HeroLink as={NextLink} color="foreground" className="w-full" href="/my-profile" size="lg" onClick={() => setIsMenuOpen(false)}>
                 My Profile
               </HeroLink>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <HeroLink color="danger" className="w-full cursor-pointer" onClick={logout} size="lg">
+              <HeroLink color="danger" className="w-full cursor-pointer" onClick={() => { setIsMenuOpen(false); logout(); }} size="lg">
                 Logout
               </HeroLink>
             </NavbarMenuItem>
