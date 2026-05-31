@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Card, CardBody, CardFooter, Image as HeroImage, Select, SelectItem } from "@heroui/react";
+import { Button, Card, CardBody, CardFooter, Image as HeroImage } from "@heroui/react";
 import NextLink from "next/link";
 import animalsData from "../../data/animals.json";
 
@@ -19,25 +19,25 @@ export default function AnimalsPage() {
 
   return (
     <div className="flex flex-col gap-8 w-full mt-6 pb-12">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50 p-6 rounded-2xl">
-        <div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+        <div className="w-full sm:w-auto">
           <h1 className="text-3xl font-bold text-gray-900">All Animals</h1>
           <p className="text-gray-600 mt-2">Browse and find the perfect animal for Qurbani.</p>
         </div>
         
-        <Select 
-          label="Sort by Price" 
-          className="max-w-xs w-full sm:w-[200px]" 
-          variant="faded"
-          onChange={(e) => setSortOrder(e.target.value)}
-        >
-          <SelectItem key="asc" value="asc">
-            Price: Low to High
-          </SelectItem>
-          <SelectItem key="desc" value="desc">
-            Price: High to Low
-          </SelectItem>
-        </Select>
+        <div className="w-full sm:w-auto flex justify-start sm:justify-end items-center gap-3">
+          <label htmlFor="sort" className="text-sm font-medium text-gray-700 whitespace-nowrap">Sort by:</label>
+          <select 
+            id="sort"
+            className="flex-grow sm:flex-grow-0 w-full sm:w-[200px] bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 outline-none cursor-pointer"
+            onChange={(e) => setSortOrder(e.target.value)}
+            value={sortOrder}
+          >
+            <option value="">Featured</option>
+            <option value="asc">Price: Low to High</option>
+            <option value="desc">Price: High to Low</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
