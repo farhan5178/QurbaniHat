@@ -25,8 +25,8 @@ export default function MyProfile() {
               
               <div className="avatar">
                 <div className="w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 relative z-10 bg-base-200 text-neutral flex items-center justify-center text-4xl font-bold">
-                  {user.photoUrl || user.image ? (
-                    <img src={user.photoUrl || user.image} alt={user.name} />
+                  {user?.photoUrl || user?.image ? (
+                    <img src={user?.photoUrl || user?.image} alt={user?.name || "User"} />
                   ) : (
                     <span>{user?.name?.charAt(0).toUpperCase() || "U"}</span>
                   )}
@@ -36,10 +36,10 @@ export default function MyProfile() {
             </div>
             
             <h1 className="text-2xl font-bold text-base-content mb-2 font-inter tracking-tight">
-              {user.name}
+              {user?.name || "Loading..."}
             </h1>
             <p className="text-base-content/60 mb-8 font-medium">
-              {user.email}
+              {user?.email || ""}
             </p>
             
             <button
