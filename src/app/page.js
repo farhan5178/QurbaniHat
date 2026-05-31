@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, Image as HeroImage } from "@heroui/react";
+import { Button, Card } from "@heroui/react";
 import NextLink from "next/link";
 import animals from "../data/animals.json";
 
@@ -10,10 +10,9 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 pb-12 w-full">
       <section className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mt-6 animate__animated animate__fadeInDown">
-        <HeroImage
-          removeWrapper
+        <img
           alt="Hero Banner"
-          className="z-0 w-full h-full object-cover"
+          className="z-0 w-full h-full object-cover absolute inset-0"
           src="https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?auto=format&fit=crop&q=80&w=1600"
         />
         <div className="absolute inset-0 bg-black/40 z-10 flex flex-col items-center justify-center text-center p-6">
@@ -39,13 +38,10 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredAnimals.map((animal) => (
             <Card shadow="sm" key={animal.id} isPressable>
-              <div className="overflow-visible p-0">
-                <HeroImage
-                  shadow="sm"
-                  radius="lg"
-                  width="100%"
+              <div className="overflow-visible p-0 w-full">
+                <img
                   alt={animal.name}
-                  className="w-full object-cover h-[200px]"
+                  className="w-full object-cover h-[200px] rounded-t-xl"
                   src={animal.image}
                 />
               </div>

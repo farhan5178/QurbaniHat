@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Card, CardBody, CardFooter, Image as HeroImage } from "@heroui/react";
+import { Button, Card } from "@heroui/react";
 import NextLink from "next/link";
 import animalsData from "../../data/animals.json";
 
@@ -43,17 +43,14 @@ export default function AnimalsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {sortedAnimals.map((animal) => (
           <Card shadow="sm" key={animal.id} className="w-full">
-            <CardBody className="overflow-visible p-0">
-              <HeroImage
-                shadow="sm"
-                radius="none"
-                width="100%"
+            <div className="overflow-visible p-0 w-full">
+              <img
                 alt={animal.name}
-                className="w-full object-cover h-[220px]"
+                className="w-full object-cover h-[220px] rounded-t-xl"
                 src={animal.image}
               />
-            </CardBody>
-            <CardFooter className="flex-col items-start p-5 gap-4">
+            </div>
+            <div className="flex-col items-start p-5 gap-4">
               <div className="flex justify-between w-full items-start">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{animal.name}</h3>
@@ -77,7 +74,7 @@ export default function AnimalsPage() {
               >
                 View Details
               </Button>
-            </CardFooter>
+            </div>
           </Card>
         ))}
       </div>
