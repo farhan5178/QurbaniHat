@@ -110,6 +110,31 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      {/* Extra Section: Why Choose Us */}
+      <section className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 md:p-12 rounded-3xl mt-8 border border-base-200">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-900">Why Choose Us?</h2>
+          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">We provide the most secure, reliable, and convenient platform for purchasing your Qurbani animals online.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6 text-success text-2xl">🛡️</div>
+            <h3 className="text-xl font-bold mb-3 text-gray-800">Verified Sellers</h3>
+            <p className="text-gray-600 text-sm">Every seller on our platform undergoes a strict verification process to ensure transparency and trust.</p>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary text-2xl">🚚</div>
+            <h3 className="text-xl font-bold mb-3 text-gray-800">Home Delivery</h3>
+            <p className="text-gray-600 text-sm">Skip the hassle of transportation. Get your chosen animal delivered safely to your doorstep.</p>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-secondary text-2xl">💯</div>
+            <h3 className="text-xl font-bold mb-3 text-gray-800">Health Guarantee</h3>
+            <p className="text-gray-600 text-sm">We ensure all animals are healthy, well-fed, and meet the necessary standards for Qurbani.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

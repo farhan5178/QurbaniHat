@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (email, password) => {
+    // Mock login code 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (email && password) {
@@ -33,6 +34,7 @@ export function AuthProvider({ children }) {
   };
 
   const register = (name, email, photoUrl, password) => {
+    // Mock registr code  
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (name && email && password) {
@@ -47,6 +49,7 @@ export function AuthProvider({ children }) {
   };
 
   const googleLogin = () => {
+    // Mock Google Login
     return new Promise((resolve) => {
       setTimeout(() => {
         const googleUser = { email: "google_user@gmail.com", name: "Google User", photoUrl: "https://via.placeholder.com/150" };
@@ -63,6 +66,20 @@ export function AuthProvider({ children }) {
     router.push("/login");
   };
 
+  const updateUser = (data) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const updatedUser = { ...user };
+        if (data.name) updatedUser.name = data.name;
+        if (data.image) updatedUser.photoUrl = data.image;
+        
+        setUser(updatedUser);
+        localStorage.setItem("mock_user", JSON.stringify(updatedUser));
+        resolve({ data: { user: updatedUser } });
+      }, 500);
+    });
+  };
+
   const value = {
     user,
     loading,
@@ -70,6 +87,7 @@ export function AuthProvider({ children }) {
     register,
     googleLogin,
     logout,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
