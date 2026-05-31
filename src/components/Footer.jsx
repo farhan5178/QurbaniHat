@@ -1,6 +1,5 @@
 'use client'
-import NextLink from "next/link";
-import { Link as HeroLink } from "@heroui/react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -27,15 +26,15 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-4">Social Links</h3>
             <div className="flex flex-col space-y-2">
-              <HeroLink as={NextLink} href="#" color="foreground" size="sm">
+              <Link href="#" className="text-gray-700 hover:text-success text-sm">
                 Facebook
-              </HeroLink>
-              <HeroLink as={NextLink} href="#" color="foreground" size="sm">
+              </Link>
+              <Link href="#" className="text-gray-700 hover:text-success text-sm">
                 Twitter
-              </HeroLink>
-              <HeroLink as={NextLink} href="#" color="foreground" size="sm">
+              </Link>
+              <Link href="#" className="text-gray-700 hover:text-success text-sm">
                 Instagram
-              </HeroLink>
+              </Link>
             </div>
           </div>
 

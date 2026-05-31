@@ -1,7 +1,6 @@
 "use client";
 
-import { Button, Card } from "@heroui/react";
-import NextLink from "next/link";
+import Link from "next/link";
 import animals from "../data/animals.json";
 
 export default function Home() {
@@ -22,41 +21,41 @@ export default function Home() {
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
             Browse through our wide selection of premium cows and goats from trusted sellers across the country.
           </p>
-          <Button as={NextLink} href="/animals" color="success" size="lg" radius="full" className="font-semibold px-8 text-lg">
+          <Link href="/animals" className="btn btn-success rounded-full font-semibold px-8 text-lg text-white">
             Browse Animals
-          </Button>
+          </Link>
         </div>
       </section>
 
       <section className="animate__animated animate__fadeInUp animate__delay-1s">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900">Featured Animals</h2>
-          <Button as={NextLink} href="/animals" variant="light" color="success" className="font-semibold">
+          <Link href="/animals" className="btn btn-ghost text-success font-semibold">
             View All
-          </Button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredAnimals.map((animal) => (
-            <Card shadow="sm" key={animal.id} isPressable>
-              <div className="overflow-visible p-0 w-full">
+            <Link href={`/animals/${animal.id}`} key={animal.id} className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow border border-base-200 h-full flex flex-col">
+              <figure className="w-full shrink-0">
                 <img
                   alt={animal.name}
-                  className="w-full object-cover h-[200px] rounded-t-xl"
+                  className="w-full object-cover h-[200px]"
                   src={animal.image}
                 />
-              </div>
-              <div className="text-small justify-between flex-col items-start p-4 gap-2">
-                <div className="flex justify-between w-full">
-                  <b className="text-lg">{animal.name}</b>
-                  <p className="text-success font-semibold text-lg font-mono">৳{animal.price.toLocaleString()}</p>
+              </figure>
+              <div className="card-body p-4 gap-2 flex-grow flex flex-col">
+                <div className="flex justify-between w-full items-start">
+                  <h2 className="card-title text-lg mb-0">{animal.name}</h2>
+                  <p className="text-success font-semibold text-lg font-mono text-right m-0">৳{animal.price.toLocaleString()}</p>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{animal.breed}</span>
-                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{animal.weight}kg</span>
-                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{animal.location}</span>
+                <div className="flex gap-2 flex-wrap mt-auto pt-2">
+                  <span className="badge badge-ghost text-xs">{animal.breed}</span>
+                  <span className="badge badge-ghost text-xs">{animal.weight}kg</span>
+                  <span className="badge badge-ghost text-xs">{animal.location}</span>
                 </div>
               </div>
-            </Card>
+            </Link>
           ))}
         </div>
       </section>

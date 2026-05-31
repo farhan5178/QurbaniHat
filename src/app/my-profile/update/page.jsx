@@ -2,7 +2,6 @@
 
 import { useAuth } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { Card, Input, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -44,72 +43,71 @@ export default function UpdateProfile() {
 
   return (
     <ProtectedRoute>
-      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4 animate__animated animate__fadeIn">
+      <div className="flex justify-center items-start w-full mt-10 pb-12 animate__animated animate__fadeIn">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
-        className="w-full max-w-md"
+        className="w-full max-w-lg"
       >
-        <Card className="shadow-xl rounded-2xl overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/50">
-          <div className="p-8">
+        <div className="card bg-base-100 shadow-sm border border-base-200 w-full">
+          <div className="card-body p-8">
             <div className="mb-8 text-center">
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 font-inter">
-                Update Information
+              <h1 className="text-3xl font-bold text-base-content mb-2">
+                Update Profile
               </h1>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Make changes to your profile details
+              <p className="text-base-content/70">
+                Keep your information up to date
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <Input
-                label="Full Name"
-                variant="bordered"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                isRequired
-                classNames={{
-                  inputWrapper: "border-gray-200 dark:border-gray-700",
-                }}
-              />
-              <Input
-                label="Profile Image URL"
-                variant="bordered"
-                placeholder="Enter image URL"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                classNames={{
-                  inputWrapper: "border-gray-200 dark:border-gray-700",
-                }}
-              />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text font-semibold">Full Name</span>
+                </label>
+                <input 
+                  required 
+                  type="text" 
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="input input-bordered w-full focus:input-primary"
+                />
+              </div>
+
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text font-semibold">Profile Image URL</span>
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="https://example.com/image.jpg"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                  className="input input-bordered w-full focus:input-primary"
+                />
+              </div>
               
-              <div className="flex flex-col gap-3 mt-4">
-                <Button
+              <div className="flex flex-col gap-3 mt-6">
+                <button
                   type="submit"
-                  color="primary"
-                  variant="shadow"
-                  size="lg"
-                  isLoading={isUpdating}
-                  className="w-full font-semibold rounded-xl bg-gradient-to-r from-primary to-primary-600 hover:from-primary-600 hover:to-primary transition-all duration-300 shadow-primary/30"
+                  disabled={isUpdating}
+                  className="btn btn-success w-full font-bold text-white text-lg"
                 >
-                  Update Information
-                </Button>
+                  {isUpdating ? <span className="loading loading-spinner"></span> : "Save Changes"}
+                </button>
                 
-                <Button
-                  as={Link}
+                <Link
                   href="/my-profile"
-                  variant="light"
-                  size="lg"
-                  className="w-full font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                  className="btn btn-outline btn-block text-base-content/70 hover:bg-base-200 hover:text-base-content hover:border-base-300"
                 >
                   Cancel
-                </Button>
+                </Link>
               </div>
             </form>
           </div>
-        </Card>
+        </div>
       </motion.div>
     </div>
     </ProtectedRoute>

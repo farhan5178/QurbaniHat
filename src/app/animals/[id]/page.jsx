@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { Button, Card } from "@heroui/react";
 import NextLink from "next/link";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import animalsData from "../../../data/animals.json";
@@ -89,61 +88,69 @@ export default function AnimalDetailsPage() {
         </div>
 
         <div>
-          <Card className="p-6 border border-gray-100 shadow-sm" radius="lg">
-            <div className="p-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Book this Animal</h2>
+          <div className="card bg-base-100 shadow-sm border border-base-200">
+            <div className="card-body p-6">
+              <h2 className="text-2xl font-bold text-base-content mb-6">Book this Animal</h2>
               
                 <form onSubmit={handleBooking} className="flex flex-col gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text font-medium text-base-content/80">Full Name</span>
+                    </label>
                     <input 
                       required 
                       type="text" 
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-3 outline-none"
+                      className="input input-bordered w-full"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text font-medium text-base-content/80">Email</span>
+                    </label>
                     <input 
                       required 
                       type="email" 
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-3 outline-none"
+                      className="input input-bordered w-full"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text font-medium text-base-content/80">Phone Number</span>
+                    </label>
                     <input 
                       required 
                       type="tel" 
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-3 outline-none"
+                      className="input input-bordered w-full"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Delivery Address</label>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text font-medium text-base-content/80">Delivery Address</span>
+                    </label>
                     <textarea 
                       required 
                       rows="3"
                       name="address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-3 outline-none resize-none"
+                      className="textarea textarea-bordered w-full resize-none"
                     ></textarea>
                   </div>
-                  <Button type="submit" color="success" size="lg" className="w-full font-bold mt-2 text-white">
+                  <button type="submit" className="btn btn-success w-full font-bold mt-4 text-white text-lg">
                     Confirm Booking
-                  </Button>
+                  </button>
                 </form>
             </div>
-          </Card>
+          </div>
         </div>
         
       </div>
